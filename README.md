@@ -1,5 +1,44 @@
-# Vue 3 + TypeScript + Vite
+# Accounts Book (Vue 3 + TS + Pinia)
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Форма управления учётными записями по ТЗ. Реализованы добавление/удаление записей, валидация на `blur`/`change`, правила для типов (`Локальная` / `LDAP`), парсинг меток и сохранение в стейт-менеджер с восстановлением после перезагрузки.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Стек
+
+- **Vue 3** (Composition API, `<script setup>`)
+- **TypeScript**
+- **Pinia** (стейт и persist через `localStorage`)
+- **Naive UI** (компоненты)
+- **lucide-vue-next** (иконки)
+- **@fontsource-variable/inter** (шрифт Inter Variable)
+
+## Быстрый старт
+
+```bash
+# Node.js 18+ рекомендуется
+npm i
+npm run dev       # локальная разработка
+npm run build     # продакшн-сборка
+npm run preview   # предпросмотр сборки
+```
+
+## Соответствие ТЗ
+
+- **Добавить**: кнопка «+» создаёт пустую запись в конце списка.
+- **Удалить**: иконка корзины в последней колонке строки.
+- **Поля**:
+
+  - _Метка_ — необяз., ≤ 50, ввод через `;`, в сторе → `labels: { text: string }[]`.
+  - _Тип записи_ — `Локальная` / `LDAP`.
+  - _Логин_ — обязат., ≤ 100.
+  - _Пароль_ — обязат. **только** для `Локальная`; для `LDAP` скрыт и в сторе = `null`.
+
+- **Валидация**: текстовые — на **blur**, селект — на **change**; ошибка подсвечивается.
+- **Сохранение**: Pinia + `localStorage`, данные восстанавливаются после перезагрузки.
+
+## UX-детали
+
+- При `LDAP` поле «Пароль» скрывается, «Логин» растягивается на его место; под строкой — подсказка: _«Пароль скрыт (LDAP), в сторе = null»_.
+
+## Лицензия
+
+MIT
