@@ -1,30 +1,55 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { NButton, NAlert } from 'naive-ui';
+import { Plus, HelpCircle } from 'lucide-vue-next';
 </script>
 
 <template>
-  <div>
-    <a href="https://vite.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+	<div class="page">
+		<header class="head">
+			<h1>Учетные записи</h1>
+			<NButton type="primary" strong secondary>
+				<span class="icon-left"><Plus /></span>
+				Добавить
+			</NButton>
+		</header>
+
+		<NAlert class="hint" :show-icon="false">
+			<div class="hint-content">
+				<span class="hint-icon"><HelpCircle /></span>
+				Для указания нескольких меток для одной пары логин/пароль используйте разделитель ";"
+			</div>
+		</NAlert>
+	</div>
 </template>
 
 <style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.page {
+	max-width: 1040px;
+	margin: 24px auto;
+	padding: 0 16px;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.head {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 8px;
 }
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+.icon-left {
+	margin-right: 8px;
+	display: inline-flex;
+}
+.hint {
+	margin-bottom: 12px;
+}
+.hint-content {
+	display: flex;
+	align-items: center;
+	gap: 8px;
+}
+.hint-icon {
+	display: inline-flex;
+}
+.demo {
+	color: #4b5563;
 }
 </style>
